@@ -34,7 +34,7 @@ services:
       - "mydb"
       - "myredis"
       # - "mygolang"
-    image: php:7.3-fpm
+    image: daocloud.io/php:7.3-fpm-alpine
   mynginx:
     container_name: "mynginx"
     restart: always
