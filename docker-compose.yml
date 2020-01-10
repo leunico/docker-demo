@@ -33,7 +33,7 @@ services:
     links:
       - "mydb"
       - "myredis"
-      - "mygolang"
+      # - "mygolang"
     image: php:7.3-fpm
   mynginx:
     container_name: "mynginx"
@@ -48,15 +48,15 @@ services:
     links:
       - "myphp"
     image: nginx:latest
-  mygolang:
-    container_name: "mygolang"
-    restart: always
-    build: ./golang
-    ports:
-      - "8088:8088"
-    links:
-      - "mydb"
-      - "myredis"
-    volumes:
-      - /demo/go:/go
-    tty: true
+  # mygolang:
+  #   container_name: "mygolang"
+  #   restart: always
+  #   build: ./golang
+  #   ports:
+  #     - "8088:8088"
+  #   links:
+  #     - "mydb"
+  #     - "myredis"
+  #   volumes:
+  #     - /demo/go:/go
+  #   tty: true
