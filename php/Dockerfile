@@ -24,6 +24,8 @@ RUN apk update && apk add --no-cache --virtual .build-deps \
     && apk add --no-cache \
         curl \
         git \
+        zip \
+        unzip \
         imagemagick \
         mysql-client \
         postgresql-libs \
@@ -42,6 +44,7 @@ RUN apk update && apk add --no-cache --virtual .build-deps \
     && pecl install imagick \
     && pecl install mcrypt \
     && pecl install swoole \
+    && pecl install hprose \
     # && mkdir -p /usr/src/swoole \
     # && xz -d /tmp/swoole_4.4.13.tar.xz \
     # && tar -xvf /tmp/swoole_4.4.13.tar -C /usr/src/swoole --strip-components=1 \
@@ -51,6 +54,7 @@ RUN apk update && apk add --no-cache --virtual .build-deps \
     # && make \
     # && make install \
     && docker-php-ext-enable swoole \
+    && docker-php-ext-enable hprose \
     && docker-php-ext-enable mcrypt \
     && docker-php-ext-enable imagick \
     && docker-php-ext-install \
@@ -60,10 +64,12 @@ RUN apk update && apk add --no-cache --virtual .build-deps \
         pdo_mysql \
         pdo_pgsql \
         pdo_sqlite \
+        mysqli \
         pcntl \
         tokenizer \
         xml \
         zip \
+        gd \
     && docker-php-ext-install -j"$(getconf _NPROCESSORS_ONLN)" iconv \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install -j"$(getconf _NPROCESSORS_ONLN)" gd \
